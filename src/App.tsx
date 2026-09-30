@@ -1,7 +1,7 @@
 import { FormEvent, KeyboardEvent, ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import {
-  Activity, ArrowDownRight, ArrowRight, ArrowUpRight, BrainCircuit, Braces,
+  Activity, ArrowDownRight, ArrowRight, ArrowUpRight, Award, BadgeCheck, BrainCircuit, Braces,
   Check, ChevronRight, Circle, Code2, Cpu, Database, ExternalLink, Github,
   GitBranch, GraduationCap, Layers, Linkedin, Mail, Menu, Network, Send,
   ShoppingBag, Terminal, WalletCards, X, Zap,
@@ -36,7 +36,7 @@ const projects: Project[] = [
 ]
 
 const navItems = [
-  ['HOME', 'home'], ['ABOUT', 'about'], ['PROJECTS', 'projects'], ['SKILLS', 'skills'], ['JOURNEY', 'journey'], ['CONTACT', 'contact'],
+  ['HOME', 'home'], ['ABOUT', 'about'], ['PROJECTS', 'projects'], ['SKILLS', 'skills'], ['JOURNEY', 'journey'], ['CERTS', 'credentials'], ['CONTACT', 'contact'],
 ]
 
 function useTyping(words: string[]) {
@@ -223,6 +223,37 @@ function Journey() {
   return <section id="journey" className="section-wrap content-section journey-section"><Reveal><SectionHeading index="04" title="Development log" right="A COMMIT HISTORY, STILL IN PROGRESS." /></Reveal><div className="timeline">{entries.map((entry, index) => { const Icon = entry.icon; return <Reveal key={entry.year} className="timeline-entry" delay={index * .06}><div className="timeline-commit"><span className="commit-dot" /><span className="commit-line" /></div><span className="timeline-year">{entry.year}</span><div className="timeline-card"><div className="timeline-card-top"><span className="timeline-status">{entry.status}</span><span className="commit-hash">{['a91c2f0', 'd03e7a1', 'f61b9c4', 'NEXT →'][index]}</span></div><div className="timeline-title"><Icon size={18} /><h3>{entry.title}</h3></div><span className="timeline-place">{entry.place}</span><p>{entry.text}</p></div></Reveal> })}</div></section>
 }
 
+const credentials = [
+  {
+    number: '01', title: 'Digital Electronics', issuer: 'Infosys', type: 'LinkedIn certificate announcement',
+    href: 'https://www.linkedin.com/feed/update/urn:li:activity:7507857681534160897/', action: 'VIEW LINKEDIN POST', verified: false,
+  },
+  {
+    number: '02', title: 'Introduction to Python', issuer: 'Infosys', type: 'Python fundamentals',
+    href: 'https://www.linkedin.com/feed/update/urn:li:activity:7503825119518130176/', action: 'VIEW LINKEDIN POST', verified: false,
+  },
+  {
+    number: '03', title: 'Problem Solving Using Computational Thinking', issuer: 'University of Michigan · Coursera', type: 'Completed 29 Aug 2026',
+    href: 'https://coursera.org/share/211629f0c1afd914ae7537a1a0671893', action: 'VIEW CERTIFICATE', verified: true,
+  },
+  {
+    number: '04', title: 'Symbolic Math Onramp', issuer: 'MathWorks · MATLAB Academy', type: 'Completed 5 Sep 2026',
+    href: 'https://matlabacademy.mathworks.com/progress/share/certificate.html?id=4b1e4a39-bb78-4583-bde7-0cb3c3f3a449', action: 'VIEW CERTIFICATE', verified: true,
+  },
+]
+
+function Credentials() {
+  return <section id="credentials" className="section-wrap content-section credentials-section">
+    <Reveal><SectionHeading index="LEARNING" title="Credentials" right="COURSEWORK, WITH PROOF WHERE AVAILABLE." /></Reveal>
+    <Reveal className="credentials-intro"><p>Certificates earned along the way. Open a credential to view its source.</p><span><BadgeCheck size={14} /> 2 DIRECTLY VERIFIABLE</span></Reveal>
+    <div className="credentials-grid">{credentials.map((credential, index) => <Reveal key={credential.number} className="credential-card" delay={index * .05}>
+      <div className="credential-top"><span className="credential-num">{credential.number} <i>—</i> CERTIFICATE</span>{credential.verified ? <span className="credential-verified"><BadgeCheck size={13} /> VERIFIED</span> : <span className="credential-shared">LINKEDIN</span>}</div>
+      <div className="credential-body"><span className={`credential-emblem ${credential.verified ? 'emblem-verified' : ''}`}><Award size={21} strokeWidth={1.4} /></span><div><h3>{credential.title}</h3><p>{credential.issuer}</p></div></div>
+      <div className="credential-bottom"><span>{credential.type}</span><a href={credential.href} target="_blank" rel="noreferrer">{credential.action} <ArrowUpRight size={13} /></a></div>
+    </Reveal>)}</div>
+  </section>
+}
+
 function BuildActivity() {
   const squares = useMemo(() => Array.from({ length: 84 }, (_, i) => (i * 13 + Math.floor(i / 5) * 7) % 5), [])
   return <section className="section-wrap content-section activity-section"><Reveal><SectionHeading index="05" title="Build activity" right="THE WORK ADDS UP." /></Reveal><div className="activity-grid"><Reveal className="activity-intro"><span className="micro-label"><Activity size={13} /> CONTRIBUTION STREAM</span><h3>Consistent curiosity.<br /><span>More commits to come.</span></h3><p>My GitHub is the home for project code and experiments. Live contribution data isn’t connected here, so no activity counts are shown.</p><a className="button button-primary" href="https://github.com/Dev-Aniket-Singh" target="_blank" rel="noreferrer"><Github size={15} /> OPEN GITHUB <ArrowUpRight size={14} /></a></Reveal><Reveal className="github-panel" delay={.08}><div className="github-panel-head"><div><Github size={16} /><span>github.com/Dev-Aniket-Singh</span></div><span className="api-status"><i /> API NOT CONNECTED</span></div><div className="github-placeholder"><div className="placeholder-title"><span>ACTIVITY GRID</span><span>PLACEHOLDER / NO LIVE COUNTS</span></div><div className="heatmap-wrap"><div className="heatmap-months"><span>JAN</span><span>MAR</span><span>MAY</span><span>JUL</span><span>SEP</span><span>NOV</span></div><div className="heatmap" aria-label="Placeholder grid; contribution data is not connected">{squares.map((level, index) => <span key={index} className={level === 0 ? '' : 'placeholder-square'} />)}</div></div><div className="github-panel-foot"><span><i className="legend-square" /> ACTIVITY PREVIEW DISABLED</span><span>CONNECT PROFILE TO LOAD DATA <ArrowRight size={12} /></span></div></div><div className="repo-row"><div className="repo-icon"><WalletCards size={16} /></div><div><b>Personal Finance & Investment System</b><small>Python · OOP · Analytics</small></div><span>PROJECT</span></div><div className="repo-row"><div className="repo-icon repo-icon-violet"><ShoppingBag size={16} /></div><div><b>Online Shopping Management System</b><small>Python · MySQL · CRUD</small></div><span>PROJECT</span></div></Reveal></div></section>
@@ -283,5 +314,5 @@ function Footer() {
 }
 
 export default function App() {
-  return <div className="site-shell"><div className="site-grid" aria-hidden="true" /><Navbar /><main><Hero /><About /><TechStack /><Projects /><Journey /><BuildActivity /><GpuSection /><TerminalSection /><Contact /></main><Footer /></div>
+  return <div className="site-shell"><div className="site-grid" aria-hidden="true" /><Navbar /><main><Hero /><About /><TechStack /><Projects /><Journey /><Credentials /><BuildActivity /><GpuSection /><TerminalSection /><Contact /></main><Footer /></div>
 }

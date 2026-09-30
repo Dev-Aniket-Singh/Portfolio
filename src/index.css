@@ -241,3 +241,25 @@ a { color: inherit; text-decoration: none; }
 .pipeline-step:nth-child(5) .pipeline-connector { grid-area: 3 / 2; transform: rotate(180deg); }
 .pipeline-step:nth-child(6) .pipeline-node { grid-area: 3 / 1; transform: none; }
 @media (max-width: 760px) { .pipeline { grid-template-rows: auto 20px auto; } }
+
+/* Credentials */
+.credentials-intro { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 23px 0 20px; }
+.credentials-intro p { margin: 0; color: #929ca8; font-size: 11px; line-height: 1.7; }
+.credentials-intro > span { display: inline-flex; align-items: center; gap: 7px; color: #82cbd0; font: 7px var(--mono); letter-spacing: .07em; white-space: nowrap; }
+.credentials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+.credential-card { min-width: 0; padding: 14px 15px 0; border: 1px solid var(--line); background: linear-gradient(145deg, rgba(17, 22, 30, .88), rgba(10, 14, 20, .91)); transition: border-color .2s, transform .2s, background .2s; }
+.credential-card:hover { border-color: rgba(104, 224, 237, .34); transform: translateY(-2px); background: linear-gradient(145deg, rgba(20, 30, 37, .94), rgba(10, 14, 20, .96)); }
+.credential-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #73808b; font: 7px var(--mono); letter-spacing: .07em; }
+.credential-num i { color: var(--cyan); font-style: normal; }
+.credential-verified, .credential-shared { display: inline-flex; align-items: center; gap: 5px; color: #75cdaa; font: 7px var(--mono); }
+.credential-shared { color: #9a8bc9; }
+.credential-body { min-height: 91px; display: flex; align-items: center; gap: 13px; padding: 14px 0; }
+.credential-emblem { width: 42px; height: 42px; display: grid; place-items: center; flex: 0 0 auto; border: 1px solid rgba(171, 148, 229, .25); background: rgba(111, 81, 167, .1); color: #b8a5ec; }
+.emblem-verified { border-color: rgba(104, 224, 237, .28); background: rgba(50, 127, 140, .1); color: var(--cyan); }
+.credential-body h3 { margin: 0 0 6px; color: #dfe5ea; font-size: 13px; line-height: 1.4; letter-spacing: -.04em; font-weight: 550; }
+.credential-body p { margin: 0; color: #85919c; font: 8px var(--mono); line-height: 1.6; }
+.credential-bottom { min-height: 37px; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-inline: -15px; padding: 8px 15px; border-top: 1px solid rgba(179, 203, 220, .09); color: #697581; font: 7px var(--mono); }
+.credential-bottom a { display: inline-flex; align-items: center; gap: 5px; color: var(--cyan); white-space: nowrap; transition: color .18s; }.credential-bottom a:hover { color: #b9f5f8; }
+@media (max-width: 760px) {
+  .credentials-intro { align-items: flex-start; flex-direction: column; gap: 9px; padding: 18px 0 15px; }.credentials-intro p { font-size: 9px; }.credentials-grid { grid-template-columns: 1fr; gap: 8px; }.credential-card { padding: 12px 12px 0; }.credential-body { min-height: 77px; gap: 10px; }.credential-emblem { width: 36px; height: 36px; }.credential-body h3 { font-size: 12px; }.credential-body p { font-size: 7px; }.credential-bottom { margin-inline: -12px; padding-inline: 12px; font-size: 6px; }.credential-bottom a { font-size: 6px; }
+}
